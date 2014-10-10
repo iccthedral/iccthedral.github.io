@@ -688,7 +688,7 @@ define('pathfinder',["./MinHeap"], function(MinHeap) {
     @throws
    */
   PathFinder.prototype.find = function(from, to) {
-    var closed, cost, cur, from_, g, h, neighs, open_map, out, t, tt, xDiff, yDiff, _i, _len;
+    var closed, cur, from_, g, h, neighs, open_map, out, t, tt, xDiff, yDiff, _i, _len;
     this.open.heap = [];
     closed = {};
     open_map = {};
@@ -702,7 +702,6 @@ define('pathfinder',["./MinHeap"], function(MinHeap) {
       f: 0,
       g: 0,
       h: 0,
-      cost: from.cost,
       parent: null
     };
     this.open.push(from_);
@@ -723,26 +722,20 @@ define('pathfinder',["./MinHeap"], function(MinHeap) {
           continue;
         }
         if ((t.row === cur.row) || (t.col === cur.col)) {
-          g = this.straight_cost;
+          g = this.diagonal_cost;
         } else {
           g = this.diagonal_cost;
         }
         if (open_map[t.id] == null) {
           xDiff = Math.abs(to.col - t.col);
           yDiff = Math.abs(to.row - t.row);
-          if (t.col % 2) {
-            cost = this.straight_cost;
-          } else {
-            cost = this.diagonal_cost;
-          }
-          h = Math.sqrt((yDiff * yDiff) + (xDiff * xDiff)) * cost;
+          h = this.straight_cost * (xDiff + yDiff) + (this.diagonal_cost - 2 * this.straight_cost) * Math.min(xDiff, yDiff);
           this.open.push({
             h: h,
             row: t.row,
             id: t.id,
             col: t.col,
             g: cur.g + g,
-            cost: cost,
             f: h + g,
             parent: cur
           });
@@ -1042,7 +1035,7 @@ require(["map", "camera", "geometry", "tween.min", "tween.bezier.min"], function
       west: textures[7]
     };
     anim = new PIXI.MovieClip(textureMap.south);
-    anim.animationSpeed = 0.4;
+    anim.animationSpeed = 0.3;
     mapa.container.addChild(anim);
     anim.textureMap = textureMap;
     anim.anchor.set(0.5, 0.5);
@@ -1110,7 +1103,6 @@ require(["map", "camera", "geometry", "tween.min", "tween.bezier.min"], function
     player = createPlayer(5, 5);
     window.player = player;
     line = new PIXI.Graphics();
-    mapa.container.addChild(line);
     text = new PIXI.Text("", {
       font: "bold 10px Arial",
       fill: "white"
@@ -1131,7 +1123,7 @@ require(["map", "camera", "geometry", "tween.min", "tween.bezier.min"], function
       }
       return TweenMax.to(player, len * 2, {
         bezier: {
-          curviness: 1.3,
+          curviness: 2.5,
           values: pathValues,
           autoRotate: false
         },
@@ -1146,7 +1138,10 @@ require(["map", "camera", "geometry", "tween.min", "tween.bezier.min"], function
           line.lineStyle(2, 0xFFFFFF);
           line.moveTo(player.position.x, player.position.y);
           line.lineTo(next.x, next.y);
-          coords = mapa.pointToGridPosition(player.position);
+          ot = PIXI.InteractionData.prototype.getLocalPosition.call({
+            global: player.position
+          }, mapa.container);
+          coords = mapa.pointToGridPosition(ot);
           player.col = coords.col;
           player.row = coords.row;
           console.log("i'm on", coords);

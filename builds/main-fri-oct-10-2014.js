@@ -1145,7 +1145,6 @@ require(["map", "camera", "geometry", "tween.min", "tween.bezier.min"], function
           coords = mapa.pointToGridPosition(ot);
           player.col = coords.col;
           player.row = coords.row;
-          console.log("i'm on", coords);
           return player.setAnimation(next);
         },
         onComplete: function(val) {

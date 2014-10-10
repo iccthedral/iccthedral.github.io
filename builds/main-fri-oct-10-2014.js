@@ -1103,6 +1103,7 @@ require(["map", "camera", "geometry", "tween.min", "tween.bezier.min"], function
     player = createPlayer(5, 5);
     window.player = player;
     line = new PIXI.Graphics();
+    mapa.container.addChild(line);
     text = new PIXI.Text("", {
       font: "bold 10px Arial",
       fill: "white"

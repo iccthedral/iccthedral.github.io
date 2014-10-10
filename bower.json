@@ -1,0 +1,23 @@
+{
+  "name": "iccthedral.github.io",
+  "version": "0.0.0",
+  "homepage": "https://github.com/iccthedral/iccthedral.github.io",
+  "authors": [
+    "iccthedral <nullpotent@gmail.com>"
+  ],
+  "description": "Personal blog",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.15",
+    "pixi.js": "~1.6.1"
+  }
+}

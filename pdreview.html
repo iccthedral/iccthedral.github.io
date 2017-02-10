@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>refactoring.md</title>
+<link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body><div class="container"><h1 id="contents"><u>Contents</u></h1>
+
+<p><u>Code review</u></p>
+
+<ul>
+<li><a href="#1-code-issues">Code issues</a></li>
+<li><a href="#1-exceptions">Exception handling</a></li>
+<li><a href="#1-srp">Coupling and single responsibility</a></li>
+<li><a href="#1-naming-inconsistencies">Naming inconsistencies</a></li>
+<li><a href="#1-magics">Magic numbers and strings</a></li>
+<li><a href="#1-coding-convention">Coding convention consistency</a></li>
+<li><a href="#1-various-issues">Various smaller issues</a></li>
+</ul>
+
+<p><u>Improvements</u></p>
+
+<ul>
+<li><a href="#2-file-manager">Get rid of FileManager</a></li>
+<li><a href="#2-localization">Merge with feature branch that adds support <br>
+for language localization with resx</a></li>
+<li><a href="#2-orb">Get rid of CocosSharp, Box2D and OpenTK dependencies</a></li>
+<li><a href="#2-sqlite-dep">Get rid of SQLite dependency</a></li>
+<li><a href="#2-intercom">Merge with feature branch that uses our own Intercom  <br>
+bindings libraries</a></li>
+<li><a href="#2-warnings">Get rid of warnings</a></li>
+<li><a href="#2-unused-code">Get rid of unused/unreachable code files</a></li>
+<li><a href="#2-unused-dep">Get rid of unused dependencies</a></li>
+<li><a href="#2-build-configuration">Merge with feature branch that adds build configurations  <br>
+for different environments: TEST, DEV, LIVE</a></li>
+<li><a href="#2-mvvm">Merge with feature branch that adds rudimentary MVVM with IoC</a></li>
+<li><a href="#2-job-scheduling">Move job scheduling and route processing away from server</a></li>
+<li><a href="#2-triggers">Move triggers away from server</a></li>
+<li><a href="#2-azure-upgrade">Upgrade Azure client library</a></li>
+<li><a href="#2-git-flow">Setup git-flow</a></li>
+<li><a href="#2-models">Refactor all Models</a></li>
+</ul>
+
+<p><u>Further improvements</u></p>
+
+<ul>
+<li><a href="#3-easy-tables">Move away from Azure Easy-Tables and nodejs backend</a></li>
+<li><a href="#3-api-standardization">Standardization of the API</a></li>
+</ul>
+
+<h1 id="code-review"><u>Code review</u></h1>
+
+<p>In this section I will remark on all of points from previous code review, as I pretty much agree with everything Milos wrote.</p>
+
+<hr>
+
+<h4 id="1-code-issues"><u>Code issues</u></h4>
+
+<p>Some of the coding issues that Milos managed to list are no longer present, but some still are. And some are related to or affected by the <br>
+improvements I’ve listed further down below.</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces code complexity</li>
+<li>Eliminates potential sources of bugs</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 1 day</p>
+
+<hr>
+
+<h4 id="1-exceptions"><u>Exception handling</u></h4>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces code complexity</li>
+<li>Eliminates potential sources of crashes and bugs</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 1 day</p>
+
+<hr>
+
+<h4 id="1-srp"><u>Coupling and single responsibility</u></h4>
+
+<p><strong>Steps:</strong></p>
+
+<ul>
+<li>Decouple views from renderers</li>
+<li>Move platform specific code to IoC container.</li>
+<li>Move business logic code outside of views and into ViewModels.</li>
+<li>Move certain Azure calls away from UI thread.</li>
+<li>Move code that belongs to ViewModel away from Models.</li>
+</ul>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces code complexity</li>
+<li>Eliminates potential sources of crashes and bugs</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 10 days</p>
+
+<hr>
+
+<h4 id="1-naming-inconsistencies"><u>Naming inconsistencies</u></h4>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces code complexity</li>
+<li>Eliminates potential sources of crashes and bugs</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 2-4 hours</p>
+
+<hr>
+
+<h4 id="1-magics"><u>Magic numbers and strings</u></h4>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces code complexity</li>
+<li>Eliminates potential sources of crashes and bugs</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 1-3 hours</p>
+
+<hr>
+
+<h4 id="1-coding-convention"><u>Coding convention consistency</u></h4>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces code complexity</li>
+<li>Eliminates potential sources of crashes and bugs</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 1-4 hours</p>
+
+<hr>
+
+<h4 id="1-various-issues"><u>Various smaller issues</u></h4>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces code complexity</li>
+<li>Eliminates potential sources of crashes and bugs</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> These issues are already covered elsewhere in the document</p>
+
+<hr>
+
+<h1 id="improvements"><u>Improvements</u></h1>
+
+<blockquote>
+  <p>In this section I list my own observations on the issues with suggested improvements.</p>
+</blockquote>
+
+<h4 id="2-file-manager"><u>Get rid of FileManager</u></h4>
+
+<p>Image loading should be handled natively.</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li><p>Faster loading times of images</p>
+
+<blockquote>
+  <p>Current implementation uses runtime reflection which adds unnecessary lag to determine which image to load.</p>
+</blockquote></li>
+<li><p>Reduces size of the app</p>
+
+<blockquote>
+  <p>iOS build process has an extra <a href="https://developer.apple.com/library/content/qa/qa1681/_index.html" title="pngcrush">pngcrush</a> step before <br>
+  packaging which compresses images, but it doesn’t work anything with current implementation. <br>
+  On Android we get this sort of optimization by default.</p>
+</blockquote></li>
+<li><p>Many more are listed in Milos’ <a href="https://drive.google.com/open?id=0BwmHmn-AOJ20VC1vT0thYjBubEk">code review document</a></p></li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None except that it will constantly remind me to think twice about the image <br>
+dimensions which may be a slight annoyance for our UI designer when I request for proper dimensions.</li>
+</ul>
+
+<p><strong>Estimate:</strong> 1-2 days</p>
+
+<hr>
+
+<h4 id="2-localization"><u>Merge with feature branch that adds support for language localization with resx</u></h4>
+
+<p>Using spreadsheet-to-resx workflow.</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Easier maintenance for both developers and translators.  <br>
+Backed by a single <a href="https://docs.google.com/spreadsheets/d/1MxxwFC_NhS2PKLmEVCroUaeEUSWgmlAu89hx0IujO8g/edit#gid=0" title="translations">spreadsheet on the cloud.</a></li>
+<li>Many more are listed in Milos’ <a href="https://drive.google.com/open?id=0BwmHmn-AOJ20VC1vT0thYjBubEk">code review document</a></li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 2-4 hours</p>
+
+<hr>
+
+<h4 id="2-orb"><u>Get rid of CocosSharp, Box2D and OpenTK dependencies</u></h4>
+
+<p>They are all really huge libraries, but we use them only for the ORB animation. <br>
+In other words, it’s like NASA doing your homework.</p>
+
+<p>Instead, we should use frame-by-frame or native <sup>Forms if possible</sup> animations for the ORB.</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces memory and CPU consumption</li>
+<li>Increases battery life</li>
+<li>Reduces UI sluggishness that we often experience in game room and elsewhere when ORB is to be shown.</li>
+<li><p>Reduces size of the packaged app</p>
+
+<blockquote>
+  <p>Needs to be determined, my guesstimate is ~5Mb</p>
+</blockquote></li>
+<li><p>Reduces code complexity</p>
+
+<blockquote>
+  <p>Current implementation is being supported by thousands of lines of code</p>
+</blockquote></li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li><p>We would have to redesign prize machine animation.</p>
+
+<blockquote>
+  <p>In my opinion redesigning it should be in consideration regardless of this task. It looks bad (hard and tiny edges of prize boxes) and is painfully slow.</p>
+</blockquote></li>
+</ul>
+
+<p><strong>Estimate:</strong> 2-4 days</p>
+
+<hr>
+
+<h4 id="2-sqlite-dep"><u>Get rid of SQLite dependency</u></h4>
+
+<p>And instead use something much much simpler, for example: a simple text/csv file.</p>
+
+<p>There’s no real use for SQLite (outside of SQLitePCL which is Azure dependency). <br>
+At the moment, we use SQLite for only 2 simple operations: insertion and deletion. <br>
+Therefore, for all practical purposes, a simple text file can do the same without added complexity of SQLite as a dependency.</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Eliminates (fixes) <a href="https://trello.com/c/57TFraqU/115-fix-crash-in-wrapper-managed-to-native-sqlitepcl-sqlite3provider-nativemethods-sqlite3-step-intptr-line-1" title="SQLite crash">the crash that is eluding us</a>.</li>
+<li>Reduces code complexity</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 1-2 days</p>
+
+<hr>
+
+<h4 id="2-intercom"><u>Merge with feature branch that uses our own Intercom bindings libraries</u></h4>
+
+<p>Using <a href="https://github.com/iccthedral/IntercomSDK.iOS/" title="intercom-ios">Intercom.iOS</a> and <a href="https://github.com/iccthedral/IntercomSDK.Droid/" title="intercom-droid">Intercom.Droid</a> package nuggets.</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces project complexity by not having having to maintain and track two separate library projects.</li>
+<li>Improves clean &amp; build time of the solution</li>
+<li>Introduces Intercom library as package dependency which is easier to maintain <br>
+if it has to be updated or deleted.</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 1-2 hours</p>
+
+<hr>
+
+<h4 id="2-warnings"><u>Get rid of warnings</u></h4>
+
+<p>By examining the results of Xamarin code analyzer (or VS Resharper)</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Eliminates potential sources of bugs</li>
+<li>Reduces code complexity</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 3-6 hours</p>
+
+<hr>
+
+<h4 id="2-unused-code"><u>Get rid of unused/unreachable code files</u></h4>
+
+<p>Using VS Resharper</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces code complexity</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 2-4 hours</p>
+
+<hr>
+
+<h4 id="2-unused-dep"><u>Get rid of unused dependencies</u></h4>
+
+<p>By trial and error</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces code complexity</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 2-3 hours</p>
+
+<hr>
+
+<h4 id="2-build-configuration"><u>Merge with feature branch that adds build configurations for different environments: TEST, DEV, LIVE</u></h4>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces code and project complexity</li>
+<li><p>Easier maintenance of builds and distributions</p>
+
+<blockquote>
+  <p>Removes the need for updating of Keys.cs file each time a new build is requested.</p>
+</blockquote></li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 2 hours</p>
+
+<hr>
+
+<h4 id="2-mvvm"><u>Merge with feature branch that adds rudimentary MVVM with IoC</u></h4>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li><a href="#1-srp">Defines a standard approach for separation of concerns</a></li>
+<li>Reduces code complexity</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 3-6 hours</p>
+
+<hr>
+
+<h4 id="2-job-scheduling"><u>Move job scheduling and route processing away from server</u></h4>
+
+<p>To Azure Jobs with Azure Scheduler.  <br>
+Or Azure Batch if we determine that the processing can be massively parallelized.</p>
+
+<p>Current implementation is greatly impeding the server since it’s sometimes reading up to 1 milion records every minute and it will only get worse.  <br>
+Ideally it should dedicate all of its resources solely for processing of client requests.</p>
+
+<p>Besides that, current implementation forces me to swap backend instances twice as it relies on hacked-up solution to support this job scheduling. <br>
+This in turn forces me to maintain 3 separate repositories because we can’t instead use branches or submodules with which we would be able to configure azure automatic swapping from within portal.</p>
+
+<p>I consider this top priority for ensuring backend availability and cost reduction.</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces cost of Azure subscription</li>
+<li>Faster server response time</li>
+<li>Faster and easier server deployment</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 3-5 days</p>
+
+<hr>
+
+<h4 id="2-triggers"><u>Move triggers away from server</u></h4>
+
+<p>To Azure Functions which are ideal for the type of work they’re doing. </p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces cost of Azure subscription</li>
+<li>Faster server response time</li>
+<li>Faster and easier server deployment</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 3-5 days</p>
+
+<hr>
+
+<h4 id="2-azure-upgrade"><u>Upgrade Azure client library</u></h4>
+
+<p>Current implementation relies in part on Azure <strong>2.1.0</strong> version of Azure Common library, and in part on <strong>3.0.3</strong> version of Azure.Client and Azure.Client.Ext libraries</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li><p>Eliminates potential <a href="https://trello.com/c/57TFraqU/115-fix-crash-in-wrapper-managed-to-native-sqlitepcl-sqlite3provider-nativemethods-sqlite3-step-intptr-line-1" title="SQLite crash">sources of crashes and bugs</a> </p>
+
+<blockquote>
+  <p>Simply by upgrading to the latest version of Azure library</p>
+</blockquote></li>
+<li><p>Reduces code complexity</p></li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 1-3 days</p>
+
+<hr>
+
+<h4 id="2-git-flow"><u>Setup git-flow</u></h4>
+
+<p>With 3 environments and feature/hotfix/release branches<sup>as git submodules</sup> for both backend and app repositories. </p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li><p>Easier project maintenance</p>
+
+<blockquote>
+  <p>By not having to maintain 3 separate repositories</p>
+</blockquote></li>
+<li><p>Provides solid foundation for the future: continuous integration, migrations, automated testing, automated distribution, etc. are all important things we lack for now.</p></li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 1 day</p>
+
+<hr>
+
+<h4 id="2-models"><u>Refactor all Models</u></h4>
+
+<p>To use Newtonsoft.Json attributes in order to simplify de/serialization of Azure API data.</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Reduces code complexity</li>
+<li>Provides type-safe object de/serialization</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 1 day</p>
+
+<hr>
+
+<h1 id="further-improvements"><u>Further improvements</u></h1>
+
+<blockquote>
+  <p>In this section I list observations on potential issues in the future of the project.</p>
+</blockquote>
+
+<h4 id="3-easy-tables"><u>Move away from Azure Easy-Tables and nodejs backend</u></h4>
+
+<p>… to a  .NET backend. </p>
+
+<p>This will be a great endeavour, but one which must be done if we’re to support the expansion of our business in the future.  <br>
+Easy-Tables were not meant for backends of this size and especially not meant for constructing relational databases – which is why they’re not even an option to use with .NET backend.</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>Eliminates the need for nodejs developer</li>
+<li>Enables type-safe programming</li>
+<li>Easier database maintenance</li>
+<li>Reduces code complexity</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> n/a</p>
+
+<hr>
+
+<h4 id="3-api-standardization"><u>Standardization of the API</u></h4>
+
+<p>Per <a href="http://www.odata.org" title="odata">OData</a> or <a href="http://www.jsonapi.org" title="jsonapi">jsonapi</a> specification. </p>
+
+<p><strong>Steps:</strong></p>
+
+<ul>
+<li>Standardization using odata/jsonapi middlewares</li>
+<li>Migration to microservice architecture</li>
+<li><p>Redesign of the API with Swagger. </p>
+
+<blockquote>
+  <p>This is also relatively a great endeavour and a must if we’re to go big.</p>
+</blockquote></li>
+</ul>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li>By adhering to standards we’re ensuring the quality of the service </li>
+<li>Easier maintenance of the API</li>
+<li>Reduces API complexity</li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> n/a</p></div></body>
+</html>

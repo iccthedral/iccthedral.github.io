@@ -6,6 +6,11 @@
 <title>refactoring.md</title>
 <link rel="stylesheet" href="https://stackedit.io/res-min/themes/base.css" />
 <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<style>
+.color-red {
+ color: red;
+}
+</style>
 </head>
 <body><div class="container"><h1 id="contents">Contents</h1>
 
@@ -77,6 +82,12 @@ improvements I’ve listed further down below.</p>
 <li>None</li>
 </ul>
 
+<p><strong>Steps:</strong></p>
+
+<ul>
+<li>Fix the bugs that were left out from initial review of the document</li>
+</ul>
+
 <p><strong>Estimate:</strong> 1 day</p>
 
 <hr>
@@ -96,21 +107,19 @@ improvements I’ve listed further down below.</p>
 <li>None</li>
 </ul>
 
+<p><strong>Steps:</strong></p>
+
+<ul>
+<li><span class="color-red">Get rid of multiple levels of nested try-catch blocks</span></li>
+<li>Detailed error handling in cases where user data/state could’ve caused it</li>
+<li>Global logging function that logs the stack trace and the chain of caller function names.</li>
+</ul>
+
 <p><strong>Estimate:</strong> 1 day</p>
 
 <hr>
 
 <h4 id="1-srp"><u>Coupling and single responsibility</u></h4>
-
-<p><strong>Steps:</strong></p>
-
-<ul>
-<li>Decouple views from renderers</li>
-<li>Move platform specific code to IoC container.</li>
-<li>Move business logic code outside of views and into ViewModels.</li>
-<li>Move certain Azure calls away from UI thread.</li>
-<li>Move code that belongs to ViewModel away from Models.</li>
-</ul>
 
 <p><strong>Pros:</strong></p>
 
@@ -123,6 +132,16 @@ improvements I’ve listed further down below.</p>
 
 <ul>
 <li>None</li>
+</ul>
+
+<p><strong>Steps:</strong></p>
+
+<ul>
+<li>Decouple views from renderers</li>
+<li>Move platform specific code to IoC container.</li>
+<li>Move business logic code outside of views and into ViewModels.</li>
+<li>Move certain Azure calls away from UI thread.</li>
+<li>Move code that belongs to ViewModel away from Models.</li>
 </ul>
 
 <p><strong>Estimate:</strong> 10 days</p>

@@ -142,15 +142,22 @@ improvements I’ve listed further down below.</p>
 <li>Move business logic code outside of views and into ViewModels.</li>
 <li>Move certain Azure calls away from UI thread.</li>
 <li>Move code that belongs to ViewModel away from Models.</li>
-</ul>
+<li><span class="color-red">Break it down even further into smaller tasks, with a detailed plan of attack.</span></li>
+<li><span class="color-red">Discuss with UWP team on the possibility of working together.</span> <br>
 
-<p><strong>Estimate:</strong> <del>10 days</del> 15-20 days</p>
 
-<hr>
+<blockquote>
+  <p><span class="color-red"> I work on MVVM page-by-page &lt;==&gt; They use it page-by-page.</span></p></blockquote></li>
+  </ul> <br>
+  <strong>Estimate:</strong> <del>10 days</del> <span class="color-red">15-20 days</span>
+  
+  <hr>
+
 
 <h4 id="1-naming-inconsistencies"><u>Naming inconsistencies</u></h4>
 
-<p><strong>Pros:</strong></p>
+
+**Pros:**
 
 <ul>
 <li>Reduces code complexity</li>
@@ -237,7 +244,13 @@ improvements I’ve listed further down below.</p>
 <p><strong>Pros:</strong></p>
 
 <ul>
-<li><p>Faster loading times of images</p>
+<li><span class="color-red">Reduces memory usage on Android</span> <br>
+
+
+<blockquote>
+  <p>Milos made me aware of the memory leak issues on Android when it has to deal with downscaled images which are due to the mismatch of original image dimensions and phone screen size.</p></blockquote></li>
+  <li><p>Faster loading times of images</p>
+
 
 <blockquote>
   <p>Current implementation uses runtime reflection which adds unnecessary lag to determine which image to load.</p>
@@ -320,6 +333,8 @@ In other words, it’s like NASA doing your homework.</p>
 </blockquote></li>
 </ul>
 
+<p><span class="color-red">Milos agrees and emphasizes the importance of this</span></p>
+
 <p><strong>Estimate:</strong> 2-4 days</p>
 
 <hr>
@@ -389,7 +404,7 @@ if it has to be updated or deleted.</li>
 <li>None</li>
 </ul>
 
-<p><strong>Estimate:</strong> 3-6 hours</p>
+<p><strong>Estimate:</strong> <del>3-6 hours</del> <span class="color-red">1 day</span></p>
 
 <hr>
 

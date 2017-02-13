@@ -14,7 +14,7 @@
 <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-extractData = () => {
+let extractData = () => {
     const extractEstimate = (str) => ((/^Estimate:(.*)$/).exec(str)[1]).trim();
     const isDayEstimate = (str) => str.indexOf('day');
 	const extractEstimationParts = (str) => str.split('-').map(el => +(el.match(/\d/g) || ['NaN']).join(''));
@@ -48,7 +48,7 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
        let extractedData = extractData();
        
-      let bestData = extractedData.map(el => [el.name, el.best, el.worst, ((el.best+el.worst) * 0.5).toFixed(2)]);      
+      let bestData = extractedData.map(el => [el.name, el.best, el.worst, Math.round((el.best+el.worst) * 0.5)]);      
       let bestTotal = bestData.reduce(((acc, el) => +el[1] + acc), 0);
       let worstTotal = bestData.reduce(((acc, el) => +el[2] + acc), 0);
       let avgTotal = bestData.reduce(((acc, el) => +el[3] + acc), 0);
@@ -66,9 +66,7 @@ function drawChart() {
         data.addColumn('number', 'Min. hours');
         data.addColumn('number', 'Max. hours');
         data.addColumn('number', 'Avg. hours');
-        data.addRows([
-            bestData
-        ]);
+        data.addRows(bestData);
 
         var table = new google.visualization.Table(document.getElementById('table_div'));
 

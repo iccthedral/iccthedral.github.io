@@ -11,6 +11,43 @@
  color: red;
 }
 </style>
+<!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Mushrooms', 3],
+          ['Onions', 1],
+          ['Olives', 1],
+          ['Zucchini', 1],
+          ['Pepperoni', 2]
+        ]);
+
+        // Set chart options
+        var options = {'title':'How Much Pizza I Ate Last Night',
+                       'width':400,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 <body><div class="container"><h1 id="contents">Contents</h1>
 
@@ -29,6 +66,7 @@
 <p><strong><a href="#0-improvements">Improvements</a></strong></p>
 
 <ul>
+<li><a href="#2-local-backend">Configure backend for local development</a></li>
 <li><a href="#2-file-manager">Get rid of FileManager</a></li>
 <li><a href="#2-localization">Merge with feature branch that adds support <br>
 for language localization with resx</a></li>
@@ -55,6 +93,8 @@ for different environments: TEST, DEV, LIVE</a></li>
 <li><a href="#3-easy-tables">Move away from Azure Easy-Tables and nodejs backend</a></li>
 <li><a href="#3-api-standardization">Standardization of the API</a></li>
 </ul>
+
+<p><strong><a href="#0-planning">Planning</a></strong></p>
 
 <hr>
 
@@ -155,7 +195,7 @@ improvements I’ve listed further down below.</p>
 </blockquote></li>
 </ul>
 
-<p><strong>Estimate:</strong> <del>10 days</del> <span class="color-red">15-20 days</span></p>
+<p><strong>Estimate:</strong> 15-20 days</p>
 
 <hr>
 
@@ -192,6 +232,8 @@ improvements I’ve listed further down below.</p>
 <ul>
 <li>None</li>
 </ul>
+
+<hr>
 
 <p><strong>Estimate:</strong> 1-3 hours</p>
 
@@ -240,6 +282,35 @@ improvements I’ve listed further down below.</p>
 <blockquote>
   <p>In this section I list my own observations on the issues and suggest improvements.</p>
 </blockquote>
+
+<h4 id="2-local-backend"><u><span class="color-red">Configure backend for local development</span></u></h4>
+
+<p>Configure nodejs backend for local development</p>
+
+<p><strong>Pros:</strong></p>
+
+<ul>
+<li><p>Saves a lot of backend development time <sup>atl ~10 mins for even just a minimal change</sup></p>
+
+<blockquote>
+  <p>The workflow so far was centered around remote dev &amp; test backends <br>
+  which meant that every backend change would imply: </p>
+  
+  <ul><li>adding a bunch of strategic debug logs (3-10 mins)</li>
+  <li>committing then pushing the code (3-10 mins)</li>
+  <li>waiting for server to finish provisioning (5-15 mins).</li></ul>
+</blockquote></li>
+</ul>
+
+<p><strong>Cons:</strong></p>
+
+<ul>
+<li>None</li>
+</ul>
+
+<p><strong>Estimate:</strong> 1 day</p>
+
+<hr>
 
 <h4 id="2-file-manager"><u>Get rid of FileManager</u></h4>
 
@@ -412,7 +483,7 @@ if it has to be updated or deleted.</li>
 <li>None</li>
 </ul>
 
-<p><strong>Estimate:</strong> <del>3-6 hours</del> <span class="color-red">1 day</span></p>
+<p><strong>Estimate:</strong> 1 day</p>
 
 <hr>
 
@@ -572,7 +643,7 @@ This in turn forces me to maintain 3 separate repositories because we can’t in
 <li>None</li>
 </ul>
 
-<p><strong>Estimate:</strong> <del>1-3 days</del> <span class="color-red">3-5 days</span></p>
+<p><strong>Estimate:</strong> 3-5 days</p>
 
 <hr>
 
@@ -684,5 +755,9 @@ Easy-Tables were not meant for backends of this size and especially not meant fo
 </blockquote></li>
 </ul>
 
-<p><strong>Estimate:</strong> n/a</p></div></body>
+<p><strong>Estimate:</strong> n/a</p>
+
+<h1 id="0-planning"> Planning </h1></div>
+<div id="chart_div"></div>
+</body>
 </html>
